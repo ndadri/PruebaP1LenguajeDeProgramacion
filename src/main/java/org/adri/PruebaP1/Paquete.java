@@ -11,6 +11,8 @@ public class Paquete {
     //Realizamos el constructor
     public Paquete(double peso, double largo, double alto, double ancho) {
     if (peso < 0.01 || peso > 50.0) {
+        //IllegalArgument es para que nos muestre el mensaje cuando no se cumpla la condicion
+        //Que se realiza en cada una de las condiciones
         IllegalArgumentException erro = new IllegalArgumentException("Peso invalido");
         throw erro;
     }
@@ -26,9 +28,9 @@ public class Paquete {
     if (contenido == null) {
         IllegalArgumentException erro = new IllegalArgumentException("Contenido !NO! puede ser vacio");
     }
-
-    //Getter
     }
+
+    //Metodos Getter que son publicos para todos los atributos
     public double getPeso() {
         return peso;
     }
@@ -45,4 +47,16 @@ public class Paquete {
         return contenido;
     }
 
+    public final double volumenLitros() {
+        return (largo * ancho * peso)/1000.0;
+    }
+    protected double recargoVolumetrico() {
+        if (volumenLitros() == 100)
+            return 5.0;
+        else
+            return 0.0;
+    }
+    public String resumen() {
+    return Paquete.class.getName();
+    }
 }
